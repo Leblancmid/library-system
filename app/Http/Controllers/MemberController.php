@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
+use App\Models\Loan;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -11,7 +13,11 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        $members = Member::with(['book', 'loan'])
+        ->latest()
+        ->paginate(10);
+
+        return view('members.index', compact('loans', 'books', 'members') );
     }
 
     /**
