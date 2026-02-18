@@ -10,6 +10,9 @@ Route::get('/', fn() => redirect()->route('books.index'));
 Route::resource('books', BookController::class);
 Route::resource('members', MemberController::class);
 
+Route::delete('/members/{member}', [MemberController::class, 'destroy'])
+    ->name('members.destroy');
+
 // Borrow / Return endpoints
 Route::post('/loans/borrow', [LoanController::class, 'borrow'])->name('loans.borrow');
 Route::post('/loans/{loan}/return', [LoanController::class, 'return'])->name('loans.return');

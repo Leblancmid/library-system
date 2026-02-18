@@ -50,6 +50,10 @@
                             <td>{{ $m->email ?? '-' }}</td>
                             <td>{{ $m->phone ?? '-' }}</td>
                             <td class="row">
+                                <a href="{{ route('members.edit', $m->id) }}" class="btn btn-primary">
+                                    Edit
+                                </a>
+
                                 <form method="POST" action="{{ route('members.destroy', $m) }}"
                                     onsubmit="return confirm('Delete this member?')">
                                     @csrf

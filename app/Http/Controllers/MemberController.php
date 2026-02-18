@@ -13,58 +13,51 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::with(['book', 'loan'])
-        ->latest()
-        ->paginate(10);
+        $members = Member::latest()->paginate(10);
 
-        return view('members.index', compact('loans', 'books', 'members') );
+        return view('members.index', compact('members'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email|unique:members,email',
+        ]);
+
+        Member::create($validated);
+
+        return redirect()
+        ->route('members.index')
+        ->with('messages', 'Member added successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Member $member)
     {
-        //
+        return view('members.edit', compact('member'));
+    }
+    public function update(Request $request, Member $member) 
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email|unique:members,email',
+        ]);
+
+        $member->update($validated);
+
+        return redirect()
+        ->route('members.index')
+        ->with('messages', 'Member updated successfully!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy(Member $member)
     {
-        //
-    }
+        $member->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json([
+            'message' => 'Member deleted successfully'
+        ], 200);
     }
 }
