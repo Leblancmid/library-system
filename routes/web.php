@@ -8,10 +8,14 @@ use App\Http\Controllers\LoanController;
 Route::get('/', fn() => redirect()->route('books.index'));
 
 Route::resource('books', BookController::class);
+
+// Route::delete('/books/{book}', [BookController::class, 'destroy'])
+//     ->name('books.destroy');
+
 Route::resource('members', MemberController::class);
 
-Route::delete('/members/{member}', [MemberController::class, 'destroy'])
-    ->name('members.destroy');
+// Route::delete('/members/{member}', [MemberController::class, 'destroy'])
+//     ->name('members.destroy');
 
 // Borrow / Return endpoints
 Route::post('/loans/borrow', [LoanController::class, 'borrow'])->name('loans.borrow');

@@ -66,6 +66,11 @@
                             <td>{{ $b->copies_total }}</td>
                             <td class="row">
                                 {{-- Keep minimal: delete only --}}
+
+                                <a href="{{ route('books.edit', $b->id) }}" class="btn btn-primary">
+                                    Edit
+                                </a>
+
                                 <form method="POST" action="{{ route('books.destroy', $b) }}"
                                     onsubmit="return confirm('Delete this book?')">
                                     @csrf
