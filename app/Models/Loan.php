@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Loan extends Model
 {
-    public $fillable = ['booked_id', 'member_id', 'borrowed_at', 'due_at', 'returned_at'];
+    public $fillable = ['book_id', 'member_id', 'borrowed_at', 'due_at', 'returned_at'];
 
     protected $casts = [
-        'borrowed_at' => 'datatime',
+        'borrowed_at' => 'datetime',
         'due_at' => 'datetime',
         'returned_at' => 'datetime',
     ];
