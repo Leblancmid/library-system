@@ -14,7 +14,7 @@ class LoanController extends Controller
     {
         $loans = Loan::with(['book','member'])
             ->latest()
-            ->paginate(10);
+            ->paginate(5);
 
         $books = Book::orderBy('title')->get();
         $members = Member::orderBy('name')->get();
