@@ -40,7 +40,7 @@ class BookController extends Controller
             default => $booksQuery->latest(),
         };
     
-        $books = $booksQuery->paginate(10)->withQueryString();
+        $books = $booksQuery->paginate(5)->withQueryString();
     
         // Stats (overall, not filtered)
         $stats = [
