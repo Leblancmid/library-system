@@ -644,7 +644,7 @@
                             <th>Member</th>
                             <th>Dates</th>
                             <th>Status</th>
-                            <th class="actions-col">Action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -470,13 +470,13 @@
             </div>
             <span class="chip">Registered</span>
         </div>
-        <div class="stat">
+        {{-- <div class="stat">
             <div>
                 <p class="k">Active Borrows</p>
                 <p class="v">{{ $stats['active_borrows'] ?? '—' }}</p>
             </div>
             <span class="chip">Ongoing</span>
-        </div>
+        </div> --}}
         <div class="stat">
             <div>
                 <p class="k">Overdue</p>
@@ -484,13 +484,13 @@
             </div>
             <span class="chip">Past due</span>
         </div>
-        <div class="stat">
+        {{-- <div class="stat">
             <div>
                 <p class="k">New This Month</p>
                 <p class="v">{{ $stats['new_this_month'] ?? '—' }}</p>
             </div>
             <span class="chip">Recent</span>
-        </div>
+        </div> --}}
     </div>
 
     <div class="layout">
@@ -589,7 +589,7 @@
                         <tr>
                             <th>Member</th>
                             <th>Contact</th>
-                            <th class="actions-col">Actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>

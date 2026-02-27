@@ -12,6 +12,22 @@ class LoanController extends Controller
 {
     public function index()
     {
+
+        $stats = [
+            'total' => Loan::count(),
+        
+            'active' => Loan::whereNull('returned_at')
+                            ->where('due_at', '>=', now())
+                            ->count(),
+        
+            'overdue' => Loan::whereNull('returned_at')
+                             ->where('due_at', '<', now())
+                             ->count(),
+        
+            'returned' => Loan::whereNotNull('returned_at')
+                              ->count(),
+        ];
+
         $loans = Loan::with(['book','member'])
             ->latest()
             ->paginate(5);
@@ -19,7 +35,7 @@ class LoanController extends Controller
         $books = Book::orderBy('title')->get();
         $members = Member::orderBy('name')->get();
 
-        return view('loans.index', compact('loans', 'books', 'members'));
+        return view('loans.index', compact('loans', 'books', 'members', 'stats'));
     }
 
     public function borrow(Request $request)
